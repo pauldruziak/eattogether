@@ -10,6 +10,7 @@ gem 'slim-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'puma'
+gem 'devise'
 
 group :doc do
   gem 'sdoc', require: false
