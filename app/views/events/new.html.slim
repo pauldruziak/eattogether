@@ -1,2 +1,4 @@
-h1 Events#new
-p Find me in app/views/events/new.html.slim
+h1 New Event
+= form_for @event do |f|
+  = f.text_field :title
+  = f.submit 'Create'
