@@ -20,10 +20,13 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.0'
   gem 'spring'
   gem 'spring-commands-rspec'
+  gem 'spring-commands-cucumber'
 end
 
 group :test do
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'capybara-webkit'
+  gem 'capybara-screenshot'
+  gem 'factory_girl_rails', '~> 4.0'
 end
