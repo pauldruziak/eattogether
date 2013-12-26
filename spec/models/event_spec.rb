@@ -1,5 +1,10 @@
 require 'spec_helper'
 
 describe Event do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context 'without title' do
+    it 'should be invalid' do
+      event = build_stubbed :event, title: nil
+      expect(event).to be_invalid
+    end
+  end
 end
