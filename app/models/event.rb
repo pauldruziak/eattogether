@@ -1,7 +1,13 @@
 class Event < ActiveRecord::Base
   belongs_to :creator, class_name: 'User'
+  has_many :participants
 
-  validates :title, presence: true
+  validates :title, :creator, presence: true
 
-  alias_method :owner, :creator
+  before_create :add_creator_to_participants
+
+  private
+    def add_creator_to_participants
+      participants.build user_id: creator.id, default_name: creator.name
+    end
 end

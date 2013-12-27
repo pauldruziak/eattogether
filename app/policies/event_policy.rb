@@ -1,6 +1,6 @@
 class EventPolicy < ApplicationPolicy
   def show?
-    user && record.owner == user
+    user && record.participants.where(user_id: user.id).exists?
   end
 
   def create?
@@ -8,10 +8,10 @@ class EventPolicy < ApplicationPolicy
   end
 
   def update?
-    user && record.owner == user
+    user && record.creator == user
   end
 
   def destroy?
-    user && record.owner == user
+    user && record.creator == user
   end
 end

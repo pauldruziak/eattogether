@@ -23,12 +23,22 @@ describe EventPolicy do
     end
 
     context "with an event that I created" do
-      let(:event) { build_stubbed :event, creator: user }
+      let(:event) { create :event, creator: user }
 
       expect_it { to permit(:show)    }
       expect_it { to permit(:edit)    }
       expect_it { to permit(:update)  }
       expect_it { to permit(:destroy) }
+    end
+
+    context "with an event that I participate" do
+      let(:event) { build_stubbed :event, creator: build(:user) }
+      before(:each) { event.participants.create! user_id: user.id, default_name: user.name }
+
+      expect_it { to permit(:show)    }
+      expect_it { to_not permit(:edit)    }
+      expect_it { to_not permit(:update)  }
+      expect_it { to_not permit(:destroy) }
     end
   end
 

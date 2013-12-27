@@ -3,5 +3,6 @@ FactoryGirl.define do
     sequence :title do |n|
       "title#{n}"
     end
+    association :creator, factory: :user
   end
 end
