@@ -1,6 +1,5 @@
 class EventsController < ApplicationController
-  def create
-  end
+  respond_to :html
 
   def index
   end
@@ -8,4 +7,19 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
   end
+
+  def create
+    @event = Event.create event_params.merge(creator: current_user)
+    respond_with @event
+  end
+
+  def show
+    @event = current_user.events.find params[:id]
+    respond_with @event
+  end
+
+  private
+    def event_params
+      params.require(:event).permit(:title)
+    end
 end
