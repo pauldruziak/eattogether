@@ -1,1 +1,4 @@
 h1= @event.title
+ul
+  - @event.participants.each do |participant|
+    li= participant.display_name

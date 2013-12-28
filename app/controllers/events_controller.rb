@@ -6,6 +6,7 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    @event.participants.build
   end
 
   def create
@@ -20,6 +21,6 @@ class EventsController < ApplicationController
 
   private
     def event_params
-      params.require(:event).permit(:title)
+      params.require(:event).permit(:title, participants_attributes: [:id, :default_name, :_destroy])
     end
 end

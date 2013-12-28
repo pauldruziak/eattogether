@@ -1,4 +1,11 @@
 h1 New Event
-= form_for @event do |f|
-  = f.text_field :title
+= nested_form_for @event do |f|
+  = f.text_field :title, placeholder: 'Event title'
+  br
+  = f.fields_for :participants do |participant_form|
+    .ci-participant
+      = participant_form.text_field :default_name, placeholder: 'Participant name'
+    = participant_form.link_to_remove 'Remove this participant'
+  = f.link_to_add 'Add an participant', :participants
   = f.submit 'Create'
+

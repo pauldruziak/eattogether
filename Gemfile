@@ -12,6 +12,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'puma'
 gem 'devise'
 gem 'pundit'
+gem 'nested_form'
 
 group :doc do
   gem 'sdoc', require: false
