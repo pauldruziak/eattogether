@@ -9,3 +9,7 @@ end
 Then(/^маю побачити сторінку авторизації$/) do
   expect(current_path).to eq(new_user_session_path)
 end
+
+Then(/^маю побачити повідомлення про те що доступ заборонено$/) do
+  expect(current_path).to eq(new_user_session_path)
+end

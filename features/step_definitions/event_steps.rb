@@ -1,5 +1,19 @@
+Given(/^що я учасником певної події$/) do
+  participants = [{ default_name: @user.name, user_id: @user.id }]
+  @event = create :event, participants_attributes: participants
+end
+
 When(/^я спробую створити подію$/) do
   ensure_on new_event_path
+end
+
+When(/^я спробую переглянути будь\-яку подію$/) do
+  event = create :event
+  visit event_path(event)
+end
+
+When(/^я спробую переглянути цю подію$/) do
+  visit event_path(@event)
 end
 
 When(/^я створю подію з вірними даними$/) do
