@@ -61,7 +61,6 @@ describe EventsController do
         end.to_not change { Event.count }
       end
 
-
       it 'renders "new" template' do
         post :create, params
         expect(response).to render_template('new')

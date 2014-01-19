@@ -1,0 +1,18 @@
+inherit_from: rubocop-todo.yml
+
+AllCops:
+  Includes:
+    - Rakefile
+    - config.ru
+  Excludes:
+    - config/**
+    - script/**
+    - vendor/bundle/**
+    - bin/**
+    - db/**
+
+Documentation:
+  Enabled: false
+
+LineLength:
+  Max: 99

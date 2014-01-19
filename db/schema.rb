@@ -14,45 +14,45 @@
 ActiveRecord::Schema.define(version: 20131227142827) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "events", force: true do |t|
-    t.string   "title"
-    t.integer  "creator_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table 'events', force: true do |t|
+    t.string   'title'
+    t.integer  'creator_id'
+    t.datetime 'created_at'
+    t.datetime 'updated_at'
   end
 
-  add_index "events", ["creator_id"], name: "index_events_on_creator_id", using: :btree
+  add_index 'events', ['creator_id'], name: 'index_events_on_creator_id', using: :btree
 
-  create_table "participants", force: true do |t|
-    t.string   "default_name"
-    t.integer  "user_id"
-    t.integer  "event_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table 'participants', force: true do |t|
+    t.string   'default_name'
+    t.integer  'user_id'
+    t.integer  'event_id'
+    t.datetime 'created_at'
+    t.datetime 'updated_at'
   end
 
-  add_index "participants", ["event_id"], name: "index_participants_on_event_id", using: :btree
-  add_index "participants", ["user_id"], name: "index_participants_on_user_id", using: :btree
+  add_index 'participants', ['event_id'], name: 'index_participants_on_event_id', using: :btree
+  add_index 'participants', ['user_id'], name: 'index_participants_on_user_id', using: :btree
 
-  create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "name"
+  create_table 'users', force: true do |t|
+    t.string   'email',                  default: '', null: false
+    t.string   'encrypted_password',     default: '', null: false
+    t.string   'reset_password_token'
+    t.datetime 'reset_password_sent_at'
+    t.datetime 'remember_created_at'
+    t.integer  'sign_in_count',          default: 0,  null: false
+    t.datetime 'current_sign_in_at'
+    t.datetime 'last_sign_in_at'
+    t.string   'current_sign_in_ip'
+    t.string   'last_sign_in_ip'
+    t.datetime 'created_at'
+    t.datetime 'updated_at'
+    t.string   'name'
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index 'users', ['email'], name: 'index_users_on_email', unique: true, using: :btree
+  add_index 'users', ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true, using: :btree
 
 end

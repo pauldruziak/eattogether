@@ -13,7 +13,7 @@ describe EventPolicy do
       expect_it { to permit(:create) }
     end
 
-    context "with an event someone else created" do
+    context 'with an event someone else created' do
       let(:event) { build_stubbed :event, creator: build(:user) }
 
       expect_it { to_not permit(:show)    }
@@ -22,7 +22,7 @@ describe EventPolicy do
       expect_it { to_not permit(:destroy) }
     end
 
-    context "with an event that I created" do
+    context 'with an event that I created' do
       let(:event) { create :event, creator: user }
 
       expect_it { to permit(:show)    }
@@ -31,7 +31,7 @@ describe EventPolicy do
       expect_it { to permit(:destroy) }
     end
 
-    context "with an event that I participate" do
+    context 'with an event that I participate' do
       let(:event) { build_stubbed :event, creator: build(:user) }
       before(:each) { event.participants.create! user_id: user.id, default_name: user.name }
 
@@ -42,7 +42,7 @@ describe EventPolicy do
     end
   end
 
-  context "for a visitor" do
+  context 'for a visitor' do
     let(:user) { nil }
     let(:event) { Event.new }
 

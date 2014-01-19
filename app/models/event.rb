@@ -9,6 +9,7 @@ class Event < ActiveRecord::Base
   accepts_nested_attributes_for :participants, reject_if: proc { |attr| attr['default_name'].blank? }
 
   private
+
     def add_creator_to_participants
       participants.build user_id: creator.id, default_name: creator.name
     end
