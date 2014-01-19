@@ -3,6 +3,10 @@ Given(/^що я учасником певної події$/) do
   @event = create :event, participants_attributes: participants
 end
 
+Given(/^що я не є учасником певної події$/) do
+  @event = create :event
+end
+
 When(/^я спробую створити подію$/) do
   ensure_on new_event_path
 end

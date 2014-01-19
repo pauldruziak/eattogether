@@ -15,12 +15,17 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = current_user.events.find params[:id]
+    @event = Event.find params[:id]
+    authorize @event
     respond_with @event
   end
 
   private
+
     def event_params
-      params.require(:event).permit(:title, participants_attributes: [:id, :default_name, :_destroy])
+      params.require(:event).permit(:title,
+                                    participants_attributes: [:id,
+                                                              :default_name,
+                                                              :_destroy])
     end
 end

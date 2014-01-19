@@ -11,5 +11,6 @@ Then(/^маю побачити сторінку авторизації$/) do
 end
 
 Then(/^маю побачити повідомлення про те що доступ заборонено$/) do
-  expect(current_path).to eq(new_user_session_path)
+  expect(current_path).to eq(root_path)
+  expect(page).to have_text('You are not authorized to perform this action.')
 end

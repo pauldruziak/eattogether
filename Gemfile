@@ -13,6 +13,7 @@ gem 'puma'
 gem 'devise'
 gem 'pundit'
 gem 'nested_form'
+gem 'therubyracer'
 
 group :doc do
   gem 'sdoc', require: false
