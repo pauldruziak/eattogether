@@ -8,14 +8,9 @@ html
     meta name='viewport' content='width=device-width, initial-scale=1.0'
   body
     .container
-      .header role='navbar'
-        ul.nav.nav-pills.pull-right
-          li= nav_link 'Sign Up', new_user_registration_path
-          li= nav_link 'Forgot password?', new_user_password_path
-          li= nav_link 'Sign In', new_user_session_path
-        h3.text-muted Eat Together
       .container-fluid
         .rows
           .col-md-8.col-md-offset-2.main
             = render partial: 'layouts/flashes'
             = yield
+            = render 'devise/shared/links'
