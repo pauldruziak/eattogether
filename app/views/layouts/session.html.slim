@@ -1,17 +1,28 @@
 doctype html
 html
   head
-    title Eattogether
+    title Eat Together
     = stylesheet_link_tag 'application', media: 'all', data: { turbolinks_track: true }
     = javascript_include_tag 'application', data: { turbolinks_track: true }
     = csrf_meta_tags
   body
     .container
+      .navbar.navbar-default role='navbar'
+        .container-fluid
+          .navbar-header
+            button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'
+              span.sr-only Toggle navigation
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+            = link_to 'Eat Together', root_path, class: 'navbar-brand'
+          .navbar-collapse.collapse
+            ul.nav.navbar-nav.navbar-right
+              li= nav_link 'Sign Up', new_user_registration_path
+              li= nav_link 'Forgot password?', new_user_password_path
+              li= nav_link 'Sign In', new_user_session_path
       .container-fluid
         .rows
-          .col-md-9.main
-            - if notice.present?
-              p.notice= notice
-            - if alert.present?
-              p.alert= alert
+          .col-md-8.col-md-offset-2.main
+            = render partial: 'layouts/flashes'
             = yield

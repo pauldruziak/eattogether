@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    title Eattogether
+    title Eat Together
     = stylesheet_link_tag 'application', media: 'all', data: { turbolinks_track: true }
     = javascript_include_tag 'application', data: { turbolinks_track: true }
     = csrf_meta_tags
@@ -37,12 +37,5 @@ html
               - current_user.events.each do |event|
                 = nav_link event.title, event_path(event), badge: '0'
           .col-sm-7.col-md-8.main
-            - if notice.present?
-              .alert.alert-success.alert-dismissable
-                button.close data-dismiss='alert' &times
-                = notice
-            - if alert.present?
-              .alert.alert-danger.alert-dismissable
-                button.close data-dismiss='alert' &times
-                = alert
+            = render partial: 'layouts/flashes'
             = yield
