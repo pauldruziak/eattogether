@@ -2,6 +2,11 @@ class EventsController < ApplicationController
   respond_to :html
 
   def index
+    if current_user.events.empty?
+      redirect_to new_event_path
+    else
+      redirect_to event_path(current_user.events.last)
+    end
   end
 
   def new
