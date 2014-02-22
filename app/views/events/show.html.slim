@@ -1,4 +1,8 @@
-h1= @event.title
-ul
-  - @event.participants.each do |participant|
-    li= participant.display_name
+h1.page-header= @event.title
+.rows
+  .col-sm-12.col-md-10.col-md-offset-1
+    ul.list-group
+      - @event.participants.each do |participant|
+        li.list-group-item
+          span.badge 0
+          = participant.display_name

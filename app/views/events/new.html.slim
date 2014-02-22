@@ -1,11 +1,17 @@
-h1 New Event
-= nested_form_for @event do |f|
-  = f.text_field :title, placeholder: 'Event title'
-  br
-  = f.fields_for :participants do |participant_form|
-    .ci-participant
-      = participant_form.text_field :default_name, placeholder: 'Participant name'
-    = participant_form.link_to_remove 'Remove this participant'
-  = f.link_to_add 'Add an participant', :participants
-  = f.submit 'Create'
+h1.page-header New Event
+= nested_form_for @event, role: 'form' do |f|
+  .row
+    .col-md-10.col-sm-12.col-md-offset-1
+      .form-group
+        = f.label :title, class: 'sr-only'
+        = f.text_field :title, placeholder: 'Event title', class: 'form-control'
+      = f.fields_for :participants do |participant_form|
+        .input-group.participant-name.ci-participant
+          = participant_form.text_field :default_name, placeholder: 'Participant name', class: 'form-control'
+          span.input-group-btn
+            = participant_form.link_to_remove '&times;'.html_safe, class: 'btn btn-default'
+      = f.link_to_add 'Add an participant', :participants
+      br
+      br
+      = f.submit 'Create', class: 'btn btn-primary'
 

@@ -1,0 +1,48 @@
+doctype html
+html
+  head
+    title Eattogether
+    = stylesheet_link_tag 'application', media: 'all', data: { turbolinks_track: true }
+    = javascript_include_tag 'application', data: { turbolinks_track: true }
+    = csrf_meta_tags
+  body
+    .container
+      .navbar.navbar-default role='navbar'
+        .container-fluid
+          .navbar-header
+            button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'
+              span.sr-only Toggle navigation
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+            = link_to 'Eat Together', root_path, class: 'navbar-brand'
+          .navbar-collapse.collapse
+            ul.nav.navbar-nav.hidden-sm.hidden-md.hidden-lg
+              li= nav_link 'New event', new_event_path, li_class: 'first'
+              li.dropdown
+                = link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' } do
+                  | Events
+                  span.caret
+                ul.dropdown-menu
+                  - current_user.events.each do |event|
+                    li= nav_link event.title, event_path(event)
+            ul.nav.navbar-nav.navbar-right
+              li= nav_link 'Profile', edit_user_registration_path
+              li= link_to 'Sign Out', destroy_user_session_path, method: :delete
+      .container-fluid
+        .rows
+          .col-sm-5.col-md-4.sidebar.hidden-xs
+            ul.nav.nav-pills.nav-stacked.events
+              = nav_link 'New event', new_event_path, li_class: 'first'
+              - current_user.events.each do |event|
+                = nav_link event.title, event_path(event), badge: '0'
+          .col-sm-7.col-md-8.main
+            - if notice.present?
+              .alert.alert-success.alert-dismissable
+                button.close data-dismiss='alert' &times
+                = notice
+            - if alert.present?
+              .alert.alert-danger.alert-dismissable
+                button.close data-dismiss='alert' &times
+                = alert
+            = yield
