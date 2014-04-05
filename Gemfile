@@ -17,6 +17,7 @@ gem 'pundit'
 gem 'nested_form'
 gem 'therubyracer'
 
+
 gem 'rails_12factor', group: :production
 
 group :doc do
@@ -36,4 +37,5 @@ group :test do
   gem 'capybara-webkit'
   gem 'capybara-screenshot'
   gem 'factory_girl_rails', '~> 4.0'
+  gem 'simplecov', '~> 0.7.1', :require => false
 end
