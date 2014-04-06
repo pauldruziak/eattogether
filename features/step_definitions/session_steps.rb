@@ -23,11 +23,23 @@ When(/^він відправить свої дані для авторизаці
   login_as @user
 end
 
+When(/^він скористався можливістю відновити пароль$/) do
+  ensure_on new_user_session_path
+  click_on 'Forgot your password?'
+  fill_in 'user[email]', with: @user.email
+  click_on 'Send me reset password instructions'
+end
+
 Then(/^має отримати лист з привітанням про успішну реєстрацію$/) do
-  open_email('james.bond@example.com')
-  expect(current_email.subject).to eq I18n.t('devise.mailer.signed_up')
+  open_email 'james.bond@example.com'
+  expect(current_email.subject).to eq I18n.t('devise.mailer.signed_up.subject')
 end
 
 Then(/^(?:має )опинитися в середині системи$/) do
   expect(page).to have_content('Sign Out')
+end
+
+Then(/^має отримати лист з інструкціями по відновленню паролю$/) do
+  open_email @user.email
+  expect(current_email.subject).to eq I18n.t('devise.mailer.reset_password_instructions.subject')
 end
