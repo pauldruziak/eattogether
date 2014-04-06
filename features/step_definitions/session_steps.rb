@@ -35,7 +35,7 @@ Then(/^має отримати лист з привітанням про усп�
   expect(current_email.subject).to eq I18n.t('devise.mailer.signed_up.subject')
 end
 
-Then(/^(?:має )опинитися в середині системи$/) do
+Then(/^має опинитися в середині системи$/) do
   expect(page).to have_content('Sign Out')
 end
 
