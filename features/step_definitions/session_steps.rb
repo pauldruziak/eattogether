@@ -6,11 +6,23 @@ Given(/^я увійшов у систему$/) do
   click_on 'Sign in'
 end
 
-Then(/^маю побачити сторінку авторизації$/) do
-  expect(current_path).to eq(new_user_session_path)
+Given(/^гість вирішив зареєструватись за допомогою email та паролю$/) do
+  visit '/users/sign_up'
 end
 
-Then(/^маю побачити повідомлення про те що доступ заборонено$/) do
-  expect(current_path).to eq(root_path)
-  expect(page).to have_text('You are not authorized to perform this action.')
+When(/^він відправить свої дані$/) do
+  fill_in 'user[name]', with: 'James Bond'
+  fill_in 'user[email]', with: 'james.bond@example.com'
+  fill_in 'user[password]', with: 'password'
+  fill_in 'user[password_confirmation]', with: 'password'
+  click_on 'Sign up'
+end
+
+Then(/^має отримати лист з привітанням про успішну реєстрацію$/) do
+  open_email('james.bond@example.com')
+  expect(current_email.subject).to eq I18n.t('devise.mailer.signed_up')
+end
+
+Then(/^опинитися в середині системи$/) do
+  expect(page).to have_content('Sign Out')
 end

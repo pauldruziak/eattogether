@@ -36,6 +36,7 @@ group :test do
   gem 'database_cleaner'
   gem 'capybara-webkit'
   gem 'capybara-screenshot'
+  gem 'capybara-email'
   gem 'factory_girl_rails', '~> 4.0'
   gem 'simplecov', '~> 0.7.1', :require => false
 end
