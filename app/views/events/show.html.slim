@@ -1,4 +1,9 @@
-h1.page-header= @event.title
+#event.page-header
+  - if policy(@event).update?
+    ul.nav.nav-pills
+      li = link_to 'Edit event', edit_event_path(@event)
+  h1 = @event.title
+
 .rows
   .col-sm-12.col-md-10.col-md-offset-1
     ul.list-group

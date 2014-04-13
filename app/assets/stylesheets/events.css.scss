@@ -13,3 +13,15 @@ ul.events {
 .participant-name {
   margin-bottom: 7px;
 }
+
+#event.page-header {
+  margin-top: 0;
+
+  h1 {
+    margin: 0;
+  }
+  ul.nav {
+    float: right;
+  }
+
+}

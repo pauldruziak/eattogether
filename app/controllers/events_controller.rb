@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  before_filter :set_event, only: %i[show edit update]
   respond_to :html
 
   def index
@@ -16,12 +17,23 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.create event_params.merge(creator: current_user)
+    @event.participants.build if @event.invalid? && @event.participants.empty?
     respond_with @event
   end
 
   def show
-    @event = Event.find params[:id]
     authorize @event
+    respond_with @event
+  end
+
+  def edit
+    authorize @event
+    respond_with @event
+  end
+
+  def update
+    authorize @event
+    @event.update event_params
     respond_with @event
   end
 
@@ -32,5 +44,9 @@ class EventsController < ApplicationController
                                     participants_attributes: [:id,
                                                               :default_name,
                                                               :_destroy])
+    end
+
+    def set_event
+      @event = Event.find params[:id]
     end
 end

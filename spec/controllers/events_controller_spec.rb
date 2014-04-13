@@ -96,4 +96,70 @@ describe EventsController do
       expect(assigns[:event]).to be_kind_of(Event)
     end
   end
+
+  describe 'GET #edit' do
+    let(:event) { create :event, creator: user }
+
+    it 'respond with success' do
+      get :edit, id: event.id
+      expect(response).to be_success
+    end
+
+    it 'renders "edit" template' do
+      get :edit, id: event.id
+      expect(response).to render_template('edit')
+    end
+
+    it 'assigns @event' do
+      get :edit, id: event.id
+      expect(assigns[:event]).to be_kind_of(Event)
+    end
+  end
+
+  describe 'PATCH #update' do
+    let(:event) { create :event, creator: user }
+
+    context 'with valid params' do
+      let(:params) { { id: event.id,  event: attributes_for(:event) } }
+
+      it 'redirects to show page' do
+        patch :update, params
+        expect(response).to redirect_to(event_path(assigns(:event)))
+      end
+
+      it 'updates event' do
+        patch :update, params
+        expect(event.reload.title).to eq(params[:event][:title])
+      end
+
+      it 'assigns @event' do
+        patch :update, params
+        expect(assigns(:event)).to eq(event)
+      end
+    end
+
+    context 'with invalid params' do
+      let(:params) { { id: event.id, event: attributes_for(:event).merge(title: nil) } }
+
+      it 'respond with success' do
+        patch :update, params
+        expect(response).to be_success
+      end
+
+      it 'not updates event' do
+        patch :update, params
+        expect(event.reload.title).to_not eq(params[:event][:title])
+      end
+
+      it 'renders "edit" template' do
+        patch :update, params
+        expect(response).to render_template('edit')
+      end
+
+      it 'assigns @event' do
+        patch :update, params
+        expect(assigns(:event)).to eq(event)
+      end
+    end
+  end
 end

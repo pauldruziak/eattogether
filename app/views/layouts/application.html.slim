@@ -30,13 +30,12 @@ html
             ul.nav.navbar-nav.navbar-right
               li= nav_link 'Profile', edit_user_registration_path
               li= link_to 'Sign Out', destroy_user_session_path, method: :delete
-      .container
-        .rows
-          .col-sm-5.col-md-4.sidebar.hidden-xs
-            ul.nav.nav-pills.nav-stacked.events
-              = nav_link 'New event', new_event_path, li_class: 'first'
-              - current_user.events.each do |event|
-                = nav_link event.title, event_path(event), badge: '0'
-          .col-sm-7.col-md-8.main
-            = render partial: 'layouts/flashes'
-            = yield
+      .rows
+        .col-sm-5.col-md-4.sidebar.hidden-xs
+          ul.nav.nav-pills.nav-stacked.events
+            = nav_link 'New event', new_event_path, li_class: 'first'
+            - current_user.events.each do |event|
+              = nav_link event.title, event_path(event), badge: '0'
+        .col-sm-7.col-md-8.main
+          = render partial: 'layouts/flashes'
+          = yield

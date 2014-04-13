@@ -8,6 +8,10 @@ class Event < ActiveRecord::Base
 
   accepts_nested_attributes_for :participants, reject_if: proc { |attr| attr['default_name'].blank? }
 
+  def participants_without_owner
+    participants.where('user_id IS NULL OR user_id != ?', creator_id)
+  end
+
   private
 
     def add_creator_to_participants
