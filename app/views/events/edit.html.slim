@@ -1,2 +1,5 @@
-h1.page-header Edit Event
+#event.page-header
+  ul.nav.nav-pills
+    li = nav_link 'Edit event', edit_event_path(@event)
+  h1 = @event.title
 = render 'form', participants: @event.participants_without_owner, event: @event
