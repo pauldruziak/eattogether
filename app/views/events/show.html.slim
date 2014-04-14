@@ -1,6 +1,6 @@
 #event.page-header
   - if policy(@event).update?
-    ul.nav.nav-pills
+    ul.nav.nav-pills.navbar-right
       li = link_to 'Edit event', edit_event_path(@event)
   h1 = @event.title
 

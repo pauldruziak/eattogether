@@ -20,8 +20,11 @@ ul.events {
   h1 {
     margin: 0;
   }
-  ul.nav {
-    float: right;
-  }
+}
 
+#event.page-header .nav-pills, ul.events {
+  li.active > a, li.active > a:hover, li.active > a:focus {
+    color: #555;
+    background-color: #e7e7e7;
+  }
 }
