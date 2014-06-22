@@ -21,3 +21,5 @@ vagrant/Vagrantfile
 /coverage
 
 config/database.yml
+.env
+.foreman

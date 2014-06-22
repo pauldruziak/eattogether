@@ -1,0 +1,30 @@
+#!/bin/sh
+
+# Set up Ruby dependencies
+bundle install
+
+# Set up staging and production git remotes
+git remote add staging git@heroku.com:limitless-headland-7793.git
+
+# Set up database
+bin/rake db:setup
+bin/rake db:create RAILS_ENV=test
+bin/rake db:test:prepare
+
+# Set up configurable environment variables for Foreman
+if [ ! -f .env ]; then
+  echo "RACK_ENV=development" > .env
+fi
+
+echo "port: 5002" > .foreman
+
+# Set up DNS through Pow
+if [ -d ~/.pow ]
+then
+  echo 5002 > ~/.pow/`basename $PWD`
+else
+  echo "Pow not set up but the team uses it for this project. Setup: http://goo.gl/RaDPO"
+fi
+
+# Let's check how it works
+bin/rake
