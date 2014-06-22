@@ -19,3 +19,5 @@
 vagrant/.vagrant
 vagrant/Vagrantfile
 /coverage
+
+config/database.yml
