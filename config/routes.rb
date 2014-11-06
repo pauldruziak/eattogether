@@ -3,6 +3,6 @@ Eattogether::Application.routes.draw do
     resources :transactions, shallow: true
   end
 
-  devise_for :users, controllers: { registrations: 'users/registrations' }
+  devise_for :users, controllers: { registrations: 'users/registrations', invitations: 'users/invitations' }
   root to: 'events#index'
 end
