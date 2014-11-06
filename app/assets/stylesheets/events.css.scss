@@ -12,6 +12,10 @@ ul.events {
 
 .participant-name {
   margin-bottom: 7px;
+
+  input.form-control.half {
+    width: 50% !important;
+  }
 }
 
 #event.page-header {

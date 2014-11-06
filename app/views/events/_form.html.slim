@@ -11,7 +11,8 @@
             = f.link_to_remove '&times;'.html_safe, class: 'btn btn-default disabled'
       = f.fields_for :participants, participants do |participant_form|
         .input-group.participant-name.ci-participant
-          = participant_form.text_field :default_name, placeholder: 'Participant name', class: 'form-control'
+          = participant_form.text_field :default_name, placeholder: 'Participant name', class: 'form-control half'
+          = participant_form.email_field :email, placeholder: 'Email', class: 'form-control half'
           span.input-group-btn
             = participant_form.link_to_remove '&times;'.html_safe, class: 'btn btn-default'
       = f.link_to_add 'Add an participant', :participants

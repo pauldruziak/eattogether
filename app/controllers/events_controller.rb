@@ -45,6 +45,7 @@ class EventsController < ApplicationController
     params.require(:event).permit(:title,
                                   participants_attributes: [:id,
                                                             :default_name,
+                                                            :email,
                                                             :_destroy])
   end
 
