@@ -6,7 +6,7 @@ class Event < ActiveRecord::Base
 
   before_create :add_creator_to_participants
 
-  accepts_nested_attributes_for :participants, reject_if: proc { |attr| attr['default_name'].blank? }
+  accepts_nested_attributes_for :participants, reject_if: proc { |a| a['default_name'].blank? }
 
   def participants_without_owner
     participants.where('user_id IS NULL OR user_id != ?', creator_id)
@@ -14,7 +14,7 @@ class Event < ActiveRecord::Base
 
   private
 
-    def add_creator_to_participants
-      participants.build user_id: creator.id, default_name: creator.name
-    end
+  def add_creator_to_participants
+    participants.build user_id: creator.id, default_name: creator.name
+  end
 end
