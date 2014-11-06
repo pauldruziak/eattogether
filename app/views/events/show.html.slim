@@ -2,6 +2,7 @@
   - if policy(@event).update?
     ul.nav.nav-pills.navbar-right
       li = link_to 'Edit event', edit_event_path(@event)
+      li = link_to 'New transaction', new_event_transaction_path(@event)
   h1 = @event.title
 
 .rows
@@ -9,5 +10,22 @@
     ul.list-group
       - @event.participants.each do |participant|
         li.list-group-item
-          span.badge 0
+          span.badge= participant.amount
           = participant.display_name
+.rows
+  .col-sm-12.col-md-10.col-md-offset-1
+    table.table.table-striped
+      - @transactions.each do |transaction|
+        tr
+          td
+            small= transaction.payers_name.join(', ')
+            br
+            strong= link_to_if policy(transaction).destroy?, transaction.description, transaction_path(transaction)
+            br
+            small= transaction.debtors_name.join(', ')
+          td.text-right
+            br
+            strong= link_to_if policy(transaction).destroy?, transaction.debt_for(@current_participant), transaction_path(transaction)
+            br
+            small= transaction.amount.to_s
+

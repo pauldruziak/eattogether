@@ -23,13 +23,30 @@ describe 'A new', Event do
       expect(event.participants.where(user_id: event.creator.id)).to be_exists
     end
   end
+end
 
-  context '#participants_without_owner' do
+describe Event do
+  describe '#participants_without_owner' do
     it 'returns all participants without owner' do
       event = create :event, participants_attributes: [{ default_name: 'John' }]
 
       expect(event.participants.map(&:display_name)).to match_array([event.creator.name, 'John'])
       expect(event.participants_without_owner.map(&:display_name)).to eq(['John'])
+    end
+  end
+
+  describe '#participant?' do
+    let(:user) { create :user }
+    let(:other_user) { create :user }
+    let(:participants) { [{ default_name: user.name, user_id: user.id }] }
+    let(:event) { create :event, participants_attributes: participants }
+
+    it 'returns true if user listed in participants' do
+      expect(event.participant?(user)).to be_true
+    end
+
+    it 'returns false if user not listed in participants' do
+      expect(event.participant?(other_user)).to be_false
     end
   end
 end

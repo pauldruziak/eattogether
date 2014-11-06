@@ -1,0 +1,20 @@
+h1.page-header = @transaction.description
+.rows
+  .col-sm-12.col-md-10.col-md-offset-1
+    h2 Payers
+    ul.list-group
+      - @transaction.payers.each do |payer|
+        li.list-group-item
+          span.badge= payer.amount
+          = payer.participant.display_name
+.rows
+  .col-sm-12.col-md-10.col-md-offset-1
+    h2 Debitors
+    ul.list-group
+      - @transaction.debtors.each do |debtor|
+        li.list-group-item
+          span.badge= debtor.amount
+          = debtor.participant.display_name
+.rows
+  .col-sm-12.col-md-10.col-md-offset-1
+    = button_to 'Delete Transaction', transaction_path(@transaction), data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-danger'

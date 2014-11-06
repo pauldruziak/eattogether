@@ -35,7 +35,7 @@ html
           ul.nav.nav-pills.nav-stacked.events
             = nav_link 'New event', new_event_path, li_class: 'first'
             - current_user.events.each do |event|
-              = nav_link event.title, event_path(event), badge: '0'
+              = nav_link event.title, event_path(event)
         .col-sm-7.col-md-8.main
           = render partial: 'layouts/flashes'
           = yield

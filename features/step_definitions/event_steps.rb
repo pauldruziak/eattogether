@@ -7,6 +7,16 @@ Given(/^що я не є учасником певної події$/) do
   @event = create :event
 end
 
+Given(/^в мене є подія$/) do
+  @bob = create :user, name: 'Bob'
+  @kate = create :user, name: 'Kate'
+  participants = [
+    { default_name: @bob.name, user_id: @bob.id },
+    { default_name: @kate.name, user_id: @kate.id }
+  ]
+  @event = create :event, creator: @user, participants_attributes: participants
+end
+
 When(/^я спробую створити подію$/) do
   ensure_on new_event_path
 end
@@ -30,6 +40,14 @@ When(/^під час створення події я вкажу лише іме
     click_on 'Add an participant'
     fill_last_participant with: 'Dave'
   end
+end
+
+When(/^я внесу трату в цю подію$/) do
+  ensure_on event_path(@event)
+
+  click_on 'New transaction'
+  fill_form :transaction, @bob.name => true, @user.name => true, amount: '10'
+  click_on submit(:transaction)
 end
 
 Then(/^я зможу її побачити$/) do

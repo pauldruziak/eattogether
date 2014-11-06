@@ -23,6 +23,8 @@ class EventsController < ApplicationController
 
   def show
     authorize @event
+    @transactions = @event.transactions.preload(payers: :participant, debtors: :participant)
+    @current_participant = @event.participants.where(user_id: current_user.id).first
     respond_with @event
   end
 
