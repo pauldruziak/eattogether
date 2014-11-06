@@ -19,8 +19,8 @@ development:
   host: localhost
   encoding: unicode
   database: eattogether_development
-  username: deploy
-  password: password
+  username: paveldruziak
+  password:
   encoding: utf8
   pool: 5
 
@@ -49,8 +49,8 @@ test: &test
   adapter: postgresql
   encoding: unicode
   database: eattogether_test
-  username: deploy
-  password: password
+  username: paveldruziak
+  password:
   encoding: utf8
   pool: 5
 
@@ -58,8 +58,8 @@ production:
   adapter: postgresql
   encoding: unicode
   database: eattogether_production
-  username: deploy
-  password: password
+  username: paveldruziak
+  password:
   encoding: utf8
   pool: 5
 
