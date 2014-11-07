@@ -1,7 +1,7 @@
 class Event < ActiveRecord::Base
   belongs_to :creator, class_name: 'User'
-  has_many :participants
-  has_many :transactions
+  has_many :participants, dependent: :destroy
+  has_many :transactions, dependent: :destroy
 
   validates :title, :creator_id, presence: true
 
