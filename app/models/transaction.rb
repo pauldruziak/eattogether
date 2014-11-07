@@ -13,6 +13,18 @@ class Transaction < ActiveRecord::Base
   accepts_nested_attributes_for :debtors, reject_if: proc { |a| a['selected'] == '0' }
   accepts_nested_attributes_for :payers
 
+  def amount=(value)
+    super((value.to_f * 100).to_i)
+  end
+
+  def amount
+    super.to_i / 100.0
+  end
+
+  def amount_in_coins
+    self['amount']
+  end
+
   def payer_id=(value)
     @payer_id = value
     payers.build participant_id: value
