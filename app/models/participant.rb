@@ -24,7 +24,7 @@ class Participant < ActiveRecord::Base
     if user = User.find_by_email(email)
       self.user = user
     else
-      user = User.invite! email: email
+      user = User.invite! email: email, name: default_name
       self.user = user
     end
   end
