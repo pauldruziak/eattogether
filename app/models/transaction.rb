@@ -14,6 +14,7 @@ class Transaction < ActiveRecord::Base
   accepts_nested_attributes_for :payers
 
   def payer_id=(value)
+    @payer_id = value
     payers.build participant_id: value
   end
 

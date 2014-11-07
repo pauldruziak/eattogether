@@ -3,7 +3,7 @@ class TransactionsController < ApplicationController
 
   def new
     @transaction = @event.transactions.build
-    @transaction.payer_id = @event.participants.find_by_user_id(current_user.id).try(:id)
+    @transaction.payer_id = @event.participants.where(user_id: current_user.id).first.try(:id)
     @event.participants.each { |p| @transaction.debtors.build participant: p, selected: true }
     authorize @transaction
   end
