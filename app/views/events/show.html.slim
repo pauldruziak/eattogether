@@ -1,8 +1,8 @@
 #event.page-header
-  - if policy(@event).update?
-    ul.nav.nav-pills.navbar-right
+  ul.nav.nav-pills.navbar-right
+    - if policy(@event).update?
       li = link_to 'Edit event', edit_event_path(@event)
-      li = link_to 'New transaction', new_event_transaction_path(@event)
+    li = link_to 'New transaction', new_event_transaction_path(@event)
   h1 = @event.title
 
 .rows
