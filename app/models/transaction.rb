@@ -8,7 +8,7 @@ class Transaction < ActiveRecord::Base
 
   validates :amount, :event_id, presence: true
 
-  before_save :split_amount
+  before_create :split_amount
 
   accepts_nested_attributes_for :debtors, reject_if: proc { |a| a['selected'] == '0' }
   accepts_nested_attributes_for :payers
