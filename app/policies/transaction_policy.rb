@@ -26,6 +26,6 @@ class TransactionPolicy < ApplicationPolicy
   end
 
   def creator?
-    record.creator == user
+    record.creator_id == user.id
   end
 end

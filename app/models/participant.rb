@@ -1,6 +1,8 @@
 class Participant < ActiveRecord::Base
   belongs_to :user
   belongs_to :event
+  has_many :payers
+  has_many :debtors
 
   validates :default_name, presence: true
 
