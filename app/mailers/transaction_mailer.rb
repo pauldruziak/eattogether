@@ -1,5 +1,5 @@
 class TransactionMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: 'noreply@eattogetherapp.com'
 
   def new_transaction(transaction_id)
     @transaction = Transaction.find(transaction_id)
