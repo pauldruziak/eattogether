@@ -1,0 +1,27 @@
+/ encoding: utf-8
+h1.page-header = @transaction.description
+.rows
+  h2 Payers
+  table width='50%'
+    - @transaction.payers.each do |payer|
+      tr
+        td= payer.participant.display_name
+        td width='20%' = payer.amount
+.rows
+  h2 Debitors
+  table width='50%'
+    - @transaction.debtors.each do |debtor|
+      tr
+        td= debtor.participant.display_name
+        td width='20%' = debtor.amount
+
+.rows
+  h2 Balance
+  table width='50%'
+    - @event.participants.each do |participant|
+      tr
+        td= participant.display_name
+        td width='20%' = participant.amount
+.rows
+  .col-sm-12.col-md-10.col-md-offset-1
+    = link_to 'Переглянути транзакцію', transaction_url(@transaction.id)

@@ -12,6 +12,7 @@ class TransactionsController < ApplicationController
     @transaction = @event.transactions.build transaction_params.merge(creator: current_user)
     authorize @transaction
     if @transaction.save
+      TransactionMailer.new_transaction(@transaction.id).deliver
       flash[:info] = 'Successfuly created transaction'
       redirect_to @event
     else
