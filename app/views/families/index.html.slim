@@ -1,0 +1,13 @@
+#family.page-header
+  ul.nav.nav-pills.navbar-right
+    - if policy(Family.new(event: @event)).new?
+      li= link_to 'New Family', new_event_family_path(@event)
+  h1 Families for #{@event.title}
+
+.rows
+  .col-sm-12.col-md-10.col-md-offset-1
+    - @families.each do |family|
+      h2.ci-family-name = family.name
+      .ci-family-members = family.family_members.map(&:display_name).join(', ')
+      = link_to 'Destroy', family, data: {:confirm => 'Are you sure?'}, :method => :delete
+

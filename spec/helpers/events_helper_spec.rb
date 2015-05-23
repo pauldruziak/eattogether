@@ -1,15 +1,14 @@
 require 'spec_helper'
 
-# Specs in this file have access to a helper object that includes
-# the EventsHelper. For example:
-#
-# describe EventsHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 describe EventsHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'group_by_family' do
+    it 'group participants by family name' do
+      participants = [
+        double('participant1', family_name: 'foo', amount: 10),
+        double('participant2', family_name: 'foo', amount: 10),
+        double('participant3', family_name: 'bar', amount: 10)
+      ]
+      expect(helper.group_by_family(participants)).to eq({ 'foo' => 20, 'bar' => 10 })
+    end
+  end
 end

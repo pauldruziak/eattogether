@@ -24,4 +24,12 @@ describe 'A new', Family do
       expect(family.errors.keys).to eq([:event_id])
     end
   end
+
+  context 'without family_members' do
+    it 'should be invalid' do
+      family = build_stubbed :family, family_members: []
+      expect(family).to be_invalid
+      expect(family.errors.keys).to eq([:family_members])
+    end
+  end
 end

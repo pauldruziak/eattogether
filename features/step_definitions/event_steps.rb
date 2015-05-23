@@ -18,7 +18,7 @@ Given(/^в мене є подія$/) do
 end
 
 Given(/^в мене є подія з користувачими (.*?)$/) do |users_name|
-  users_name = users_name.gsub(' та ', ', ').split(', ')
+  users_name = split_users_name(users_name)
   participants = users_name.map do |user_name|
     { default_name: user_name, user_id: create(:user, name: user_name).id }
   end

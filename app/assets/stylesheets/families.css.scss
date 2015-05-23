@@ -1,0 +1,14 @@
+#family.page-header {
+  margin-top: 0;
+
+  h1 {
+    margin: 0;
+  }
+}
+
+#family.page-header .nav-pills {
+  li.active > a, li.active > a:hover, li.active > a:focus {
+    color: #555;
+    background-color: #e7e7e7;
+  }
+}

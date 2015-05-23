@@ -1,5 +1,5 @@
 Given(/^я увійшов у систему$/) do
-  @user = create :user
+  @user = create :user, name: 'Паша'
   login_as @user
 end
 

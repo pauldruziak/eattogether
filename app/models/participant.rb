@@ -1,4 +1,5 @@
 class Participant < ActiveRecord::Base
+  attr_accessor :selected
   belongs_to :user
   belongs_to :event
   belongs_to :family
@@ -6,6 +7,10 @@ class Participant < ActiveRecord::Base
   has_many :debtors
 
   validates :default_name, presence: true
+
+  def self.without_family
+    where(family_id: nil)
+  end
 
   def amount
     (paid - debt) / 100.0

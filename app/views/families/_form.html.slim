@@ -1,0 +1,25 @@
+= form_for [@event, @family], role: 'form' do |f|
+  .row
+    .col-md-10.col-sm-12.col-md-offset-1
+      - if @family.errors.any?
+        #error_explanation
+          h2 = "#{pluralize(@family.errors.count, "error")} prohibited this family from being saved:"
+          ul
+            - @family.errors.full_messages.each do |message|
+              li = message
+
+      .form-group
+        = f.label :name, class: 'sr-only'
+        = f.text_field :name, placeholder: 'Family Name', class: 'form-control'
+      = f.fields_for :family_members, @available_participants do |family_members_fields|
+        .form-group
+          .checkbox
+            label.ci-family-member
+              = family_members_fields.check_box :selected
+              = family_members_fields.object.display_name
+            = family_members_fields.hidden_field :id
+      = f.submit 'Create', class: 'btn btn-primary'
+      = ' or '
+      = link_to 'Cancel', event_families_path(@event)
+
+
