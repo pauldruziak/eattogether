@@ -1,5 +1,6 @@
 class TransactionMailer < ActionMailer::Base
   default from: 'noreply@eattogetherapp.com'
+  helper 'events'
 
   def new_transaction(transaction_id)
     @transaction = Transaction.find(transaction_id)

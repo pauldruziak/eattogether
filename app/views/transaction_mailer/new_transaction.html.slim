@@ -18,10 +18,10 @@ h1.page-header = @transaction.description
 .rows
   h2 Balance
   table width='50%'
-    - @event.participants.each do |participant|
+    - group_by_family(@event.participants).each do |name, amount|
       tr
-        td= participant.display_name
-        td width='20%' = participant.amount
+        td= name
+        td width='20%' = amount
 .rows
   .col-sm-12.col-md-10.col-md-offset-1
     = link_to 'Переглянути транзакцію', transaction_url(@transaction.id)
