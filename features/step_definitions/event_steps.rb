@@ -17,6 +17,14 @@ Given(/^в мене є подія$/) do
   @event = create :event, creator: @user, participants_attributes: participants
 end
 
+Given(/^в мене є подія з користувачими (.*?)$/) do |users_name|
+  users_name = users_name.gsub(' та ', ', ').split(', ')
+  participants = users_name.map do |user_name|
+    { default_name: user_name, user_id: create(:user, name: user_name).id }
+  end
+  @event = create :event, creator: @user, participants_attributes: participants
+end
+
 When(/^я спробую створити подію$/) do
   ensure_on new_event_path
 end
@@ -27,6 +35,10 @@ When(/^я спробую переглянути будь\-яку подію$/) d
 end
 
 When(/^я спробую переглянути цю подію$/) do
+  visit event_path(@event)
+end
+
+When(/^я відкрию сторінку балансу для цієї події$/) do
   visit event_path(@event)
 end
 
@@ -59,4 +71,14 @@ Then(/^будуть створенні "віртуальні" учасники$/
   expect(page).to have_content(@user.name)
   expect(page).to have_content('Maria')
   expect(page).to have_content('Dave')
+end
+
+Then(/^побачу наступний баланс:$/) do |table|
+  expected_balance =  table.rows_hash.to_a
+  current_balance = find('ul.balance').all('li').map do |row|
+    amount = row.find('.badge').text
+    name = row.text.gsub(amount, '')
+    [name, amount]
+  end
+  expect(current_balance).to match_array(expected_balance)
 end

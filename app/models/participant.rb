@@ -1,6 +1,7 @@
 class Participant < ActiveRecord::Base
   belongs_to :user
   belongs_to :event
+  belongs_to :family
   has_many :payers
   has_many :debtors
 
@@ -16,6 +17,10 @@ class Participant < ActiveRecord::Base
 
   def display_name
     default_name
+  end
+
+  def family_name
+    family.try(:name) || display_name
   end
 
   def email
