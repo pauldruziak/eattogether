@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.1.2'
 
-gem 'rails', '4.1'
+gem 'rails', '~> 4.1'
 gem 'pg'
 gem 'sass-rails', '~> 4.0.0'
 gem 'bootstrap-sass', '~> 3.1.1'
@@ -18,6 +18,7 @@ gem 'pundit'
 gem 'nested_form'
 gem 'therubyracer'
 
+gem 'newrelic_rpm', '~> 3.15.0.314'
 
 gem 'rails_12factor', group: :production
 
