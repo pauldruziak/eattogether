@@ -18,7 +18,7 @@ gem 'pundit'
 gem 'nested_form'
 gem 'therubyracer'
 
-gem 'newrelic_rpm', '~> 3.15.0.314'
+gem 'newrelic_rpm', '~> 5.1.0.344'
 
 gem 'rails_12factor', group: :production
 
