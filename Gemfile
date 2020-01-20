@@ -30,7 +30,7 @@ group :development do
 end
 
 group :development, :test do
-  gem 'rspec-rails', '~> 2.0'
+  gem 'rspec-rails'
   gem 'spring'
   gem 'spring-commands-rspec'
   gem 'spring-commands-cucumber'
