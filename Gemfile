@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.1.2'
+ruby '2.6.4'
 
 gem 'rails', '~> 4.1'
 gem 'pg'
@@ -16,7 +16,6 @@ gem 'devise'
 gem 'devise_invitable'
 gem 'pundit'
 gem 'nested_form'
-gem 'therubyracer'
 
 gem 'newrelic_rpm', '~> 6.8.0.360'
 
