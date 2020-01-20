@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20150523142754) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "debtors", force: true do |t|
+  create_table "debtors", force: :cascade do |t|
     t.integer  "transaction_id"
     t.integer  "participant_id"
     t.integer  "amount"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20150523142754) do
   add_index "debtors", ["participant_id"], name: "index_debtors_on_participant_id", using: :btree
   add_index "debtors", ["transaction_id"], name: "index_debtors_on_transaction_id", using: :btree
 
-  create_table "events", force: true do |t|
+  create_table "events", force: :cascade do |t|
     t.string   "title"
     t.integer  "creator_id"
     t.datetime "created_at"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20150523142754) do
 
   add_index "events", ["creator_id"], name: "index_events_on_creator_id", using: :btree
 
-  create_table "families", force: true do |t|
+  create_table "families", force: :cascade do |t|
     t.string   "name"
     t.integer  "creator_id"
     t.integer  "event_id"
@@ -44,7 +44,9 @@ ActiveRecord::Schema.define(version: 20150523142754) do
     t.datetime "updated_at"
   end
 
-  create_table "participants", force: true do |t|
+  add_index "families", ["event_id"], name: "index_families_on_event_id", using: :btree
+
+  create_table "participants", force: :cascade do |t|
     t.string   "default_name"
     t.integer  "user_id"
     t.integer  "event_id"
@@ -57,7 +59,7 @@ ActiveRecord::Schema.define(version: 20150523142754) do
   add_index "participants", ["family_id"], name: "index_participants_on_family_id", using: :btree
   add_index "participants", ["user_id"], name: "index_participants_on_user_id", using: :btree
 
-  create_table "payers", force: true do |t|
+  create_table "payers", force: :cascade do |t|
     t.integer  "transaction_id"
     t.integer  "participant_id"
     t.integer  "amount"
@@ -68,7 +70,7 @@ ActiveRecord::Schema.define(version: 20150523142754) do
   add_index "payers", ["participant_id"], name: "index_payers_on_participant_id", using: :btree
   add_index "payers", ["transaction_id"], name: "index_payers_on_transaction_id", using: :btree
 
-  create_table "transactions", force: true do |t|
+  create_table "transactions", force: :cascade do |t|
     t.string   "description"
     t.integer  "amount"
     t.integer  "event_id"
@@ -80,7 +82,7 @@ ActiveRecord::Schema.define(version: 20150523142754) do
   add_index "transactions", ["creator_id"], name: "index_transactions_on_creator_id", using: :btree
   add_index "transactions", ["event_id"], name: "index_transactions_on_event_id", using: :btree
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: ""
     t.string   "reset_password_token"
