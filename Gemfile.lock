@@ -128,7 +128,7 @@ GEM
     multi_json (1.10.1)
     multi_test (0.1.1)
     nested_form (0.3.2)
-    newrelic_rpm (3.15.0.314)
+    newrelic_rpm (6.8.0.360)
     nokogiri (1.9.1)
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
@@ -266,7 +266,7 @@ DEPENDENCIES
   jquery-rails
   letter_opener
   nested_form
-  newrelic_rpm (~> 3.15.0.314)
+  newrelic_rpm (~> 6.8.0.360)
   pg
   puma
   pundit
