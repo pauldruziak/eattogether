@@ -233,7 +233,7 @@ GEM
       tilt
     sdoc (1.0.0)
       rdoc (>= 5.0)
-    simplecov (0.18.4)
+    simplecov (0.18.5)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
     simplecov-html (0.12.1)
@@ -304,7 +304,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 6.0.0)
   sdoc
-  simplecov (~> 0.18.4)
+  simplecov (~> 0.18.5)
   slim-rails
   spring
   spring-commands-cucumber
