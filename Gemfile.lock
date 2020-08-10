@@ -144,7 +144,7 @@ GEM
       factory_girl (~> 4.9.0)
       railties (>= 3.0.0)
     ffi (1.12.1)
-    foreman (0.87.1)
+    foreman (0.87.2)
     formulaic (0.4.1)
       activesupport
       capybara
