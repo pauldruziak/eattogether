@@ -17,7 +17,7 @@ gem 'devise_invitable'
 gem 'pundit'
 gem 'nested_form'
 
-gem 'newrelic_rpm', '~> 6.13.0'
+gem 'newrelic_rpm', '~> 6.13.1'
 
 gem 'rails_12factor', group: :production
 
