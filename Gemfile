@@ -45,6 +45,6 @@ group :test do
   gem 'capybara-screenshot'
   gem 'capybara-email'
   gem 'factory_girl_rails', '~> 4.0'
-  gem 'simplecov', '~> 0.20.0', :require => false
+  gem 'simplecov', '~> 0.21.1', :require => false
   gem 'formulaic'
 end
